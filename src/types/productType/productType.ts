@@ -1,3 +1,4 @@
+import type { ReviewType } from '../reviewType/reviewType';
 export interface ProductType {
   id: number;
   title: string;
@@ -6,4 +7,5 @@ export interface ProductType {
   rating: number;
   brand: string;
   images: string[];
+  reviews: ReviewType[];
 }

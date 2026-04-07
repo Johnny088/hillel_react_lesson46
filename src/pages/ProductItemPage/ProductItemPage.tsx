@@ -1,5 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router';
 import type { ProductType } from '../../types/productType/productType';
 import { fetchProductsById } from '../../services/productServise';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
@@ -41,6 +47,10 @@ export const ProductItemPage = () => {
             <p className={css.linkOption}>Go back</p>
             <img width={40} height={40} src={back} alt="back arroy" />
           </button>
+          <Link to="review" state={location.state}>
+            <p>Read reviews</p>
+          </Link>
+          <Outlet />
         </div>
       )}
     </>
