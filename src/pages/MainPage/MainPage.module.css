@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+}
+button {
+  padding: 8px;
+  background-color: aquamarine;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 600ms ease;
+  &:hover {
+    background-color: rgb(25, 88, 67);
+    color: white;
+  }
+}
