@@ -17,12 +17,8 @@ export const SearOrderForm = ({ orderStatus }: Props) => {
       id="dropdownMenu"
       onChange={selectChangeHandler}
     >
-      <option className="" value="asc">
-        asc
-      </option>
-      <option className="" value="desc">
-        desc
-      </option>
+      <option defaultValue="asc">asc</option>
+      <option value="desc">desc</option>
     </select>
   );
 };

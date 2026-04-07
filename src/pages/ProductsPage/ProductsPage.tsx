@@ -3,11 +3,13 @@ import { fetchProducts } from '../../services/productServise';
 import type { ProductType } from '../../types/productType/productType';
 import { LoadingState } from '../../components/LoadingState/LoadingState';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 
 export const ProductPage = () => {
+  const location = useLocation();
+
   const [order, setOrder] = useState('asc');
   const {
     data: products,
@@ -31,7 +33,10 @@ export const ProductPage = () => {
           <ul>
             {products.map(product => (
               <li key={product.id}>
-                <Link to={`${product.id}`}>
+                <Link
+                  to={`${product.id}/description`}
+                  state={{ from: location }}
+                >
                   <p>{product.title}</p>
                 </Link>
               </li>
