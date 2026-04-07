@@ -4,18 +4,21 @@ import type { ProductType } from '../../types/productType/productType';
 import { LoadingState } from '../../components/LoadingState/LoadingState';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
 import { Link } from 'react-router';
+import { useState } from 'react';
+import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 
 export const ProductPage = () => {
+  const [order, setOrder] = useState('asc');
   const {
     data: products,
     isError,
     isLoading,
   } = useQuery<ProductType[]>({
-    queryKey: ['products'],
-    queryFn: fetchProducts,
+    queryKey: ['products', order],
+    queryFn: () => fetchProducts(order),
   });
-  const selectChangeHandler = (selectedValue): void => {
-    console.log(selectedValue);
+  const orderStatus = (value: string): void => {
+    setOrder(value);
   };
   return (
     <>
@@ -23,12 +26,8 @@ export const ProductPage = () => {
       {isLoading && <LoadingState />}
       {!isLoading && products && products.length > 0 && (
         <>
-          <form>
-            <select id="dropdownMenu" onChange={selectChangeHandler}>
-              <option value="asc">asc</option>
-              <option value="desk">desk</option>
-            </select>
-          </form>
+          <SearOrderForm orderStatus={orderStatus} />
+
           <ul>
             {products.map(product => (
               <li key={product.id}>

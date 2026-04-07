@@ -7,10 +7,12 @@ interface Response {
   products: ProductType[];
 }
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (order: string) => {
   const { data } = await axios.get<Response>(baseURL, {
     params: {
       limit,
+      sortBy: 'title',
+      order,
     },
   });
   return data.products;
