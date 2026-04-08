@@ -3,15 +3,17 @@ import { fetchProducts } from '../../services/productServise';
 import type { ProductType } from '../../types/productType/productType';
 import { LoadingState } from '../../components/LoadingState/LoadingState';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useSearchParams } from 'react-router';
 import { useState } from 'react';
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 type Order = 'asc' | 'desc';
 
 export const ProductsPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchOrder = (searchParams.get('order') as Order) ?? 'asc';
   const location = useLocation();
   console.log(location);
-  const [order, setOrder] = useState<Order>('asc');
+  const [order, setOrder] = useState<Order>(searchOrder);
   const {
     data: products,
     isError,
@@ -22,6 +24,7 @@ export const ProductsPage = () => {
   });
   const orderStatus = (value: Order): void => {
     setOrder(value);
+    setSearchParams({ order: value });
   };
   return (
     <>
