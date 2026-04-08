@@ -14,7 +14,7 @@ import css from './productItemPage.module.css';
 import back from '../../assets/back.png';
 export const ProductItemPage = () => {
   const location = useLocation();
-
+  console.log(location);
   const navigate = useNavigate();
 
   const { id } = useParams();

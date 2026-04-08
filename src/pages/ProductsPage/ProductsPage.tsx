@@ -7,9 +7,9 @@ import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 
-export const ProductPage = () => {
+export const ProductsPage = () => {
   const location = useLocation();
-
+  console.log(location);
   const [order, setOrder] = useState('asc');
   const {
     data: products,
