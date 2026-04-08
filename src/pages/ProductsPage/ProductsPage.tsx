@@ -4,16 +4,17 @@ import type { ProductType } from '../../types/productType/productType';
 import { LoadingState } from '../../components/LoadingState/LoadingState';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
 import { Link, useLocation, useSearchParams } from 'react-router';
-import { useState } from 'react';
+
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 import type { OrderStatusType } from '../../types/orderStatusType/orderStatusType';
 
 export const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchOrder = (searchParams.get('order') as OrderStatusType) ?? 'asc';
+
+  const order = (searchParams.get('order') as OrderStatusType) ?? 'asc';
   const location = useLocation();
   console.log(location);
-  const [order, setOrder] = useState<OrderStatusType>(searchOrder);
+
   const {
     data: products,
     isError,
@@ -22,8 +23,9 @@ export const ProductsPage = () => {
     queryKey: ['products', order],
     queryFn: () => fetchProducts(order),
   });
+
   const orderStatus = (value: OrderStatusType): void => {
-    setOrder(value);
+    // setOrder(value);
     setSearchParams({ order: value });
   };
   return (
