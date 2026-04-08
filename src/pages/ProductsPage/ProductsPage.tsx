@@ -7,13 +7,18 @@ import { Link, useLocation, useSearchParams } from 'react-router';
 
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 import type { OrderStatusType } from '../../types/orderStatusType/orderStatusType';
+import { useEffect } from 'react';
 
 export const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get('order') === null) {
+      setSearchParams({ order: 'asc' });
+    }
+  }, []);
 
-  const order = (searchParams.get('order') as OrderStatusType) ?? 'asc';
+  const order = searchParams.get('order') as OrderStatusType;
   const location = useLocation();
-  console.log(location);
 
   const {
     data: products,
@@ -25,7 +30,6 @@ export const ProductsPage = () => {
   });
 
   const orderStatus = (value: OrderStatusType): void => {
-    // setOrder(value);
     setSearchParams({ order: value });
   };
   return (

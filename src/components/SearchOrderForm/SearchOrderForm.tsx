@@ -20,7 +20,7 @@ export const SearOrderForm = ({ orderStatus, value }: Props) => {
       value={value}
       onChange={selectChangeHandler}
     >
-      <option value="asc">asc</option>
+      <option defaultValue="asc">asc</option>
       <option value="desc">desc</option>
     </select>
   );

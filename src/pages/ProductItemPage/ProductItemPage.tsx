@@ -12,9 +12,9 @@ import { ErrorState } from '../../components/ErrorState/ErrorState';
 import { LoadingState } from '../../components/LoadingState/LoadingState';
 import css from './productItemPage.module.css';
 import back from '../../assets/back.png';
+
 export const ProductItemPage = () => {
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -23,7 +23,7 @@ export const ProductItemPage = () => {
     isError,
     isLoading,
   } = useQuery<ProductType>({
-    queryKey: ['product'],
+    queryKey: ['product', id],
     queryFn: () => fetchProductsById(Number(id)),
   });
   const goBackHandler = () => {
