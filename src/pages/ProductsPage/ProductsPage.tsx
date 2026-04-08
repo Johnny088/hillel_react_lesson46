@@ -6,11 +6,12 @@ import { ErrorState } from '../../components/ErrorState/ErrorState';
 import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
+type Order = 'asc' | 'desc';
 
 export const ProductsPage = () => {
   const location = useLocation();
   console.log(location);
-  const [order, setOrder] = useState('asc');
+  const [order, setOrder] = useState<Order>('asc');
   const {
     data: products,
     isError,
@@ -19,7 +20,7 @@ export const ProductsPage = () => {
     queryKey: ['products', order],
     queryFn: () => fetchProducts(order),
   });
-  const orderStatus = (value: string): void => {
+  const orderStatus = (value: Order): void => {
     setOrder(value);
   };
   return (
@@ -28,7 +29,7 @@ export const ProductsPage = () => {
       {isLoading && <LoadingState />}
       {!isLoading && products && products.length > 0 && (
         <>
-          <SearOrderForm orderStatus={orderStatus} />
+          <SearOrderForm orderStatus={orderStatus} value={order} />
 
           <ul>
             {products.map(product => (
