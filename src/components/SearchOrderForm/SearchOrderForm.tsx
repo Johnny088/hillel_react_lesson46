@@ -1,15 +1,16 @@
+import type { OrderStatusType } from '../../types/orderStatusType/orderStatusType';
 import css from './SearchOrderForm.module.css';
-type Order = 'asc' | 'desc';
+// type Order = 'asc' | 'desc';
 interface Props {
-  value: Order;
-  orderStatus: (value: Order) => void;
+  value: OrderStatusType;
+  orderStatus: (value: OrderStatusType) => void;
 }
 
 export const SearOrderForm = ({ orderStatus, value }: Props) => {
   const selectChangeHandler = (
     selectedValue: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
-    value = selectedValue.target.value as Order;
+    value = selectedValue.target.value as OrderStatusType;
     orderStatus(value);
   };
   return (
