@@ -7,11 +7,7 @@ import type { ReviewType } from '../../types/reviewType/reviewType';
 export const ProductItemSubPage = () => {
   const { id } = useParams();
 
-  const {
-    data: reviews,
-    isError,
-    isLoading,
-  } = useQuery<ReviewType[]>({
+  const { data: reviews } = useQuery<ReviewType[]>({
     queryKey: ['reviews'],
     queryFn: () => fetchReviewsById(Number(id)),
   });
@@ -19,11 +15,12 @@ export const ProductItemSubPage = () => {
     <ul>
       {reviews?.map(review => (
         <li key={review.reviewerEmail}>
-          <p>{review.rating}</p>
-          <p>{review.comment}</p>
-          {/* <p>{review.date}</p> */}
-          <p>{review.reviewerName}</p>
+          <p>Username - {review.reviewerName}</p>
           <p>{review.reviewerEmail}</p>
+          <p>Rating - {review.rating}</p>
+          <p>{review.comment}</p>
+          <p>{new Date(review.date).toLocaleString()}</p>
+          <p>------------------------</p>
         </li>
       ))}
     </ul>
