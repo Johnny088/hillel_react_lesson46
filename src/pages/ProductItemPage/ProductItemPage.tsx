@@ -27,7 +27,7 @@ export const ProductItemPage = () => {
     queryFn: () => fetchProductsById(Number(id)),
   });
   const goBackHandler = () => {
-    navigate(location.state.from ?? '/');
+    navigate(location.state?.from ?? '/');
   };
   return (
     <>
@@ -47,7 +47,7 @@ export const ProductItemPage = () => {
             <img width={40} height={40} src={back} alt="back arroy" />
           </button>
           <Link to="review" state={location.state}>
-            <p>Read reviews</p>
+            Read reviews
           </Link>
           <Outlet />
         </div>

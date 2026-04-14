@@ -5,7 +5,7 @@ import { LoadingState } from '../../components/LoadingState/LoadingState';
 import { ErrorState } from '../../components/ErrorState/ErrorState';
 import { Link, useLocation, useSearchParams } from 'react-router';
 
-import { SearOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
+import { SearchOrderForm } from '../../components/SearchOrderForm/SearchOrderForm';
 import type { OrderStatusType } from '../../types/orderStatusType/orderStatusType';
 import { useEffect } from 'react';
 
@@ -29,7 +29,7 @@ export const ProductsPage = () => {
     queryFn: () => fetchProducts(order),
   });
 
-  const orderStatus = (value: OrderStatusType): void => {
+  const setOrderStatus = (value: OrderStatusType): void => {
     setSearchParams({ order: value });
   };
   return (
@@ -38,7 +38,7 @@ export const ProductsPage = () => {
       {isLoading && <LoadingState />}
       {!isLoading && products && products.length > 0 && (
         <>
-          <SearOrderForm orderStatus={orderStatus} value={order} />
+          <SearchOrderForm orderStatus={setOrderStatus} value={order} />
 
           <ul>
             {products.map(product => (

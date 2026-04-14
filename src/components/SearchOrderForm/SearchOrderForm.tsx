@@ -6,7 +6,7 @@ interface Props {
   orderStatus: (value: OrderStatusType) => void;
 }
 
-export const SearOrderForm = ({ orderStatus, value }: Props) => {
+export const SearchOrderForm = ({ orderStatus, value }: Props) => {
   const selectChangeHandler = (
     selectedValue: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
