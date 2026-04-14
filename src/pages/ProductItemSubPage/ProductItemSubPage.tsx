@@ -13,20 +13,22 @@ export const ProductItemSubPage = () => {
     queryFn: () => fetchReviewsById(Number(id)),
   });
   return (
-    <ul>
-      {!reviews && <ReviewsEmptyState />}
-      {reviews &&
-        reviews.length > 0 &&
-        reviews.map((review, index) => (
-          <li key={index}>
-            <p>Username - {review.reviewerName}</p>
-            <p>{review.reviewerEmail}</p>
-            <p>Rating - {review.rating}</p>
-            <p>{review.comment}</p>
-            <p>{new Date(review.date).toLocaleString()}</p>
-            <p>------------------------</p>
-          </li>
-        ))}
-    </ul>
+    <>
+      {(!reviews || reviews.length === 0) && <ReviewsEmptyState />}
+      {reviews && reviews.length > 0 && (
+        <ul>
+          {reviews.map((review, index) => (
+            <li key={index}>
+              <p>Username - {review.reviewerName}</p>
+              <p>{review.reviewerEmail}</p>
+              <p>Rating - {review.rating}</p>
+              <p>{review.comment}</p>
+              <p>{new Date(review.date).toLocaleString()}</p>
+              <p>------------------------</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
