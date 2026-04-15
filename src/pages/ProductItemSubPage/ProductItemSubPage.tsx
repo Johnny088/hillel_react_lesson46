@@ -14,8 +14,9 @@ export const ProductItemSubPage = () => {
   });
   return (
     <>
-      {(!reviews || reviews.length === 0) && <ReviewsEmptyState />}
-      {reviews && reviews.length > 0 && (
+      {!reviews || reviews.length === 0 ? (
+        <ReviewsEmptyState />
+      ) : (
         <ul>
           {reviews.map((review, index) => (
             <li key={index}>
